@@ -58,7 +58,7 @@ func handleRequest(n int, addr *net.UDPAddr, conn *net.UDPConn, buf []byte, file
 		fileSize := fileInfo.Size()
 		resp = &common.Response{
 			MD5Sum:   "",
-			Content:  "",
+			Content:  nil,
 			FileName: fileName,
 			FileSize: fileSize,
 			Start:    0,
@@ -73,7 +73,7 @@ func handleRequest(n int, addr *net.UDPAddr, conn *net.UDPConn, buf []byte, file
 		}
 		resp = &common.Response{
 			MD5Sum:   common.Md5(data[:n]),
-			Content:  string(data[:n]),
+			Content:  data[:n],
 			FileName: "",
 			FileSize: 0,
 			Start:    req.Start,
